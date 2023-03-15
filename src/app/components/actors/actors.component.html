@@ -1,1 +1,13 @@
-<p>actors works!</p>
+<div class="row">
+    <div class="col-lg-4 mt-2" *ngFor="let actor of actorsArray">
+        <svg class="bd-placeholder-img rounded-circle" style="display: block; margin: auto;" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <title>{{actor.name}}</title>
+            <rect width="100%" height="100%" fill="#777" ></rect>
+            <image [attr.xlink:href]="'../../../assets/actorsImages/' + actor.image" width="250px" x="-65"> </image>
+        </svg>
+        <h2 class="fw-normal mt-3" style="text-align: center;">{{actor.name}}</h2>
+        <p style="text-align: center;">{{actor.short_description}}</p>
+        <!-- Falta añadir vinculo con el componente de detalles filtrando por el id del actor -->
+        <p><a class="btn btn-secondary" style="display: block; width: 130px; margin: auto; margin-bottom: 50px;" href="#">View details »</a></p>
+    </div><!-- /.col-lg-4 -->
+</div>

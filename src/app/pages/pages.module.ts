@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 // Importamos los componentes en el modulo para poder exportarlos
 import { HomeComponent } from './home/home.component';
+import { ComponentsModule } from '../components/components.module';
 
 
 
@@ -11,7 +12,8 @@ import { HomeComponent } from './home/home.component';
     HomeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, 
+    ComponentsModule
   ],
   exports: [
     HomeComponent,
