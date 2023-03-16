@@ -1,4 +1,5 @@
 <div class="row">
+        <!-- Declaramos el método ngFor aquí para que itere cada actor utilizando todo el formato que conteiene este div. -->
     <div class="col-lg-4 mt-2" *ngFor="let actor of actorsArray">
         <svg class="bd-placeholder-img rounded-circle" style="display: block; margin: auto;" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
             <title>{{actor.name}}</title>
@@ -8,6 +9,11 @@
         <h2 class="fw-normal mt-3" style="text-align: center;">{{actor.name}}</h2>
         <p style="text-align: center;">{{actor.short_description}}</p>
         <!-- Falta añadir vinculo con el componente de detalles filtrando por el id del actor -->
-        <p><a class="btn btn-secondary" style="display: block; width: 130px; margin: auto; margin-bottom: 50px;" href="#">View details »</a></p>
+        <!-- Además aquí añadimos una condicion, la cal en caso de que sea falsa es decir, que el actor NO
+            Contenga "details" no se muestre por pantalla el botón, que accede a los detalles del actor. 
+            En este caso, como el campo "details" no esta asignado como un campo obligatorio, se puede dar
+            el caso en el cual tengamos un registro de un actor que no tenga detalles, por lo que no tendria
+            sentido mostrar este botón. -->
+        <p><a class="btn btn-secondary" *ngIf="actor.details" style="display: block; width: 130px; margin: auto; margin-bottom: 50px;" href="#">View details »</a></p>
     </div><!-- /.col-lg-4 -->
 </div>
