@@ -6,8 +6,8 @@
             <rect width="100%" height="100%" fill="#777" ></rect>
             <image [attr.xlink:href]="'../../../assets/actorsImages/' + actor.image" width="250px" x="-65"> </image>
         </svg>
-        <h2 class="fw-normal mt-3" style="text-align: center;">{{actor.name}}</h2>
-        <p style="text-align: center;">{{actor.short_description}}</p>
+        <h2 class="fw-normal mt-3 nameColor" style="text-align: center;">{{actor.name}}</h2>
+        <p class="pcolor" style="text-align: center;">{{actor.short_description}}</p>
         <!-- Falta añadir vinculo con el componente de detalles filtrando por el id del actor -->
         <!-- Además aquí añadimos una condicion, la cal en caso de que sea falsa es decir, que el actor NO
             Contenga "details" no se muestre por pantalla el botón, que accede a los detalles del actor. 
