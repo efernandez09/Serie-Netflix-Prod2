@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 // Importamos los tipados que ya hemos creado previamente
 import { Actors } from '../../models/actors.inteface'
@@ -10,6 +11,16 @@ import { Actors } from '../../models/actors.inteface'
 })
 
 export class ActorsComponent {
+  
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+
+  }
+
+  navegar() {
+    this.router.navigate(['player']);
+  }
 
 // Declaramos el array al cual le asignaremos el tipado que hemos creado en el modelo, y 
 // lo rellenaremos con todos los actores que necesitemos, en este caso solo necesitaremos 6.
