@@ -10,10 +10,12 @@ import { AppComponent } from './app.component';
  */ 
 import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
+import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,
