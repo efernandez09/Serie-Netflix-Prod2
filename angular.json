@@ -68,6 +68,7 @@
               "browserTarget": "serie-netflix:build:production"
             },
             "development": {
+              "disableHostCheck": true,
               "browserTarget": "serie-netflix:build:development"
             }
           },
