@@ -15,10 +15,11 @@
             el caso en el cual tengamos un registro de un actor que no tenga detalles, por lo que no tendria
             sentido mostrar este botón. -->
         <p><a [class.selected]="actor === selectedActors" class="btn btn-secondary" *ngIf="actor.details" (click)="onSelect(actor)"style="display: block; width: 130px; margin: auto; margin-bottom: 50px;" href="../detail/detail.component.html">View details »</a></p>
-        <!-- <button [class.selected]="actor === selectedActors" type="button" (click)="onSelect(actor)">
-            <span class="badge">{{actor.id}}</span>
-            <span class="name">{{actor.name}}</span>
-        </button> -->
+        <button id="buttonDetails" [class.selected]="actor === selectedActors" type="button" (click)="onSelect(actor)">
+            <!-- <span class="badge">{{actor.id}}</span>
+            <span class="name">{{actor.name}}</span> -->
+            <span href="../detail/detail.component.html">View Details »</span>
+        </button>
     </div><!-- /.col-lg-4 -->
 </div>
 
