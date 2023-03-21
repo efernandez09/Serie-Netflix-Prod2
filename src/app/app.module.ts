@@ -8,22 +8,27 @@ import { AppComponent } from './app.component';
  * Importamos los modulos de los componentes y de las páginas del sitio para poder
  * utilizarlos en el componente principal. (Los añadimos en la sección de "imports" en el NgModule)
  */ 
+
+// Componentes
 import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
-import { PlayerComponent } from './components/player/player.component';
+
+// Modulos de Angular
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     ComponentsModule,
-    PagesModule
+    PagesModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

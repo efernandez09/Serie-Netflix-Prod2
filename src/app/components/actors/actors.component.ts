@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 // Importamos los tipados que ya hemos creado previamente
 import { Actors } from '../../models/actors.inteface'
 
 // Importamos los servicios
 import { ActorsDataService } from '../../services/actors-data.service'
+
+// Pipe
+import { FilterActorsByNamePipe } from '../../pipes/filter-actors-by-name.pipe'
 
 
 @Component({
@@ -19,6 +23,9 @@ export class ActorsComponent {
   // Declaramos el array al cual le asignaremos el tipado que hemos creado en el modelo, y 
   // lo rellenaremos con la información del servicio que contiene los datos, en este caso solo necesitaremos 6.
   actorsArray: Actors[] = [];
+
+  // Declaramos el elemnto en el cual se alamacenara el valor del input de búsqueda por autor.
+  searchText: string = '';
   
   constructor(private router: Router, public actorsData: ActorsDataService ) {}
 
