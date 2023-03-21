@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Actors } from 'src/app/models/actors.inteface';
+import { Actors, ActorsDetails } from 'src/app/models/actors.inteface';
 
 @Component({
   selector: 'app-detail',
@@ -8,4 +8,6 @@ import { Actors } from 'src/app/models/actors.inteface';
 })
 export class DetailComponent {
   @Input() actors?: Actors;
+  @Input() actorsDetail?: ActorsDetails;
+
 }

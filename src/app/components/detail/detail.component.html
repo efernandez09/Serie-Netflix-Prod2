@@ -1,9 +1,9 @@
 <div *ngIf="actors">
-    <h2>{{actors.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{actors.id}}</div>
-    <div>
-      <label for="actors-name">Actor name: </label>
-      <input type="string" [(ngModel)]="actors.details" placeholder="details">
-    </div>
-  
+    <h2 id="nameColor">{{actors.name | uppercase}}</h2>
+    <ul id="listColor">
+      <div><li>Fecha de nacimiento: {{actors.details?.bornDate}}</li></div>
+      <div><li>Nacionalidad: {{actors.details?.nationality}}</li></div>
+      <div><li>Descripción: {{actors.details?.long_description}}</li></div>
+      <div><li>Hobbies: {{actors.details?.hobbies}}</li></div>
+    </ul>
   </div>
