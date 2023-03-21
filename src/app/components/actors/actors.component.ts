@@ -87,5 +87,9 @@ actorsArray: Actors[] = [
     }
   }
 ]
+  selectedActors?: Actors;
+  onSelect(actors: Actors): void {
+    this.selectedActors = actors;
+  }
 
 }

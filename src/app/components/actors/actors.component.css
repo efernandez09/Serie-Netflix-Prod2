@@ -5,3 +5,25 @@
 .nameColor{
     color: rgb(255, 83, 83);
 }
+
+#buttonDetails {
+    flex: 1;
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: rgb(147, 146, 146);
+    margin: .5em;
+    padding: 0;
+    border-radius: 4px;
+    display: flex;
+    align-items: stretch;
+    height: 1.8em;
+}
+button:active {
+    background-color: #525252;
+    color: #fafafa;
+}
+button.selected {
+    background-color: black;
+    color: white;
+}
