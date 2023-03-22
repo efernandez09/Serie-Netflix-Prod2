@@ -5,11 +5,20 @@ import { FormsModule } from '@angular/forms';
 // Importamos los componentes
 import { ActorsComponent } from './actors/actors.component';
 import { PlayerComponent } from './player/player.component';
+import { DetailComponent } from './detail/detail.component';
 
 // Pipes --> Importante declararlo tanto en el campo "Declarations" como en el "Exports", para que todos los componentes
 // Que incluyan este componente púedan utilizarlo y no cause errores.
 import { FilterActorsByNamePipe } from '../pipes/filter-actors-by-name.pipe'
 
+
+import { RouterModule, Routes } from '@angular/router';
+
+/* Necesitamos importar RouterModule y Routes para poder utilizar el enrutamiento dentro del componente Actor */
+const routes: Routes = [
+  {path: 'detail/:id', component: DetailComponent}
+  ];
+  
 
 // Modulo de los componentes.
 
@@ -17,16 +26,18 @@ import { FilterActorsByNamePipe } from '../pipes/filter-actors-by-name.pipe'
   declarations: [
     ActorsComponent,
     PlayerComponent,
-    FilterActorsByNamePipe
+    FilterActorsByNamePipe,
+    DetailComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule, RouterModule.forChild(routes)
   ],
   exports: [
     ActorsComponent,
     PlayerComponent,
-    FilterActorsByNamePipe
-  ]
+    FilterActorsByNamePipe,
+    DetailComponent
+  ],
 })
 export class ComponentsModule { }
