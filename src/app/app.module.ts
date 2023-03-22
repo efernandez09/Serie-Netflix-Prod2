@@ -16,11 +16,13 @@ import { PagesModule } from './pages/pages.module';
 // Modulos de Angular
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    TopBarComponent,
   ],
   imports: [
     BrowserModule,
