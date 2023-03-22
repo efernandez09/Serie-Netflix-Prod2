@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // Importamos los tipados que ya hemos creado previamente
 import { Actors } from '../../models/actors.inteface'
+import { ActorService } from 'src/app/actor.service';
+import { ACTORS } from './actorList';
 
 @Component({
   selector: 'app-actors',
@@ -9,11 +11,11 @@ import { Actors } from '../../models/actors.inteface'
   styleUrls: ['./actors.component.css']
 })
 
-export class ActorsComponent {
+export class ActorsComponent implements OnInit{
 
 // Declaramos el array al cual le asignaremos el tipado que hemos creado en el modelo, y 
 // lo rellenaremos con todos los actores que necesitemos, en este caso solo necesitaremos 6.
-actorsArray: Actors[] = [
+/*actorsArray: Actors[] = [
   {
     id: 1,
     name: 'Ursula Corberó',
@@ -86,10 +88,20 @@ actorsArray: Actors[] = [
       hobbies: 'la música y la literatura'
     }
   }
-]
-  selectedActors?: Actors;
-  onSelect(actors: Actors): void {
-    this.selectedActors = actors;
+]*/
+  
+
+  actor = ACTORS;
+
+  constructor(private actorService: ActorService){}
+
+  ngOnInit() {
+    this.getActors();
+  }
+
+
+  getActors(): void {
+    this.actorService.getActors().subscribe(actors => this.actor = actors);
   }
 
 }

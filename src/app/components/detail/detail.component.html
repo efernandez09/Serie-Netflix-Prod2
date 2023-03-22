@@ -1,5 +1,5 @@
 <h1>Estamos en Detalles</h1>
-<div *ngIf="actors" >
+<!-- <div *ngIf="actors" >
     <h2 id="nameColor">{{actors.name | uppercase}}</h2>
     <ul id="listColor">
       <div><li>Fecha de nacimiento: {{actors.details?.bornDate}}</li></div>
@@ -8,4 +8,14 @@
       <div><li>Hobbies: {{actors.details?.hobbies}}</li></div>
     </ul>
 <h1>Estamos en Detalles</h1>
+</div> -->
+
+<div *ngIf="actor">
+  <h2>{{actor.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{actor.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="actor.name" placeholder="name"/>
+    </label>
+  </div>
 </div>
