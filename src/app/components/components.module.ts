@@ -5,6 +5,12 @@ import { FormsModule } from '@angular/forms';
 // Importamos los componentes
 import { ActorsComponent } from './actors/actors.component';
 import { DetailComponent } from './detail/detail.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {path: 'detail/:id', component: DetailComponent}
+  ];
+  
 
 // Modulo de los componentes.
 
@@ -14,10 +20,10 @@ import { DetailComponent } from './detail/detail.component';
     DetailComponent
   ],
   imports: [
-    CommonModule, FormsModule
+    CommonModule, FormsModule, RouterModule.forChild(routes)
   ],
   exports: [
-    ActorsComponent
+    ActorsComponent,DetailComponent 
   ]
 })
 export class ComponentsModule { }
