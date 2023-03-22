@@ -1,21 +1,25 @@
-<h1>Estamos en Detalles</h1>
-<!-- <div *ngIf="actors" >
-    <h2 id="nameColor">{{actors.name | uppercase}}</h2>
-    <ul id="listColor">
-      <div><li>Fecha de nacimiento: {{actors.details?.bornDate}}</li></div>
-      <div><li>Nacionalidad: {{actors.details?.nationality}}</li></div>
-      <div><li>Descripción: {{actors.details?.long_description}}</li></div>
-      <div><li>Hobbies: {{actors.details?.hobbies}}</li></div>
-    </ul>
-<h1>Estamos en Detalles</h1>
-</div> -->
-
-<div *ngIf="actor">
-  <h2>{{actor.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{actor.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="actor.name" placeholder="name"/>
-    </label>
+<body> 
+  <div id="row-image">
+    <svg class="bd-placeholder-img" style="display: block; margin: auto;" width="480" height="280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <title>{{actor.name}}</title>
+      <image [attr.xlink:href]="'../../../assets/actorsImages/' + actor.image" width="470px" y= "30" x="20"> </image>
+    </svg>
   </div>
-</div>
+
+  <!-- Le pasamos el dato del actor y accedemos a sus propiedades-->
+  <div id="row-text" *ngIf="actor">
+    <h2 id="nameColor">{{actor.name | uppercase}}</h2>
+    <ul id="listColor">
+      <div><li>Fecha de nacimiento: {{actor.details?.bornDate}}</li></div>
+      <div><li>Nacionalidad: {{actor.details?.nationality}}</li></div>
+      <div><li>Descripción: {{actor.details?.long_description}}</li></div>
+      <div><li>Hobbies: {{actor.details?.hobbies}}</li></div>
+    </ul>
+  </div>
+  
+  <!-- Por aquí irá el reproductor
+  
+  -->
+
+  <button class="btn btn-secondary" type="button" (click)="goBack()">Volver »</button>
+</body>

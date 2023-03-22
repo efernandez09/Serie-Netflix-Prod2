@@ -7,6 +7,7 @@ import { ActorsComponent } from './actors/actors.component';
 import { DetailComponent } from './detail/detail.component';
 import { RouterModule, Routes } from '@angular/router';
 
+/* Necesitamos importar RouterModule y Routes para poder utilizar el enrutamiento dentro del componente Actor */
 const routes: Routes = [
   {path: 'detail/:id', component: DetailComponent}
   ];

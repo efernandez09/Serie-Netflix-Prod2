@@ -1,5 +1,9 @@
 import { Actors } from "src/app/models/actors.inteface";
 import { ActorsDetails } from "src/app/models/actors.inteface";
+
+/* Creamos el archivo con el array de los datos de los actores en un fichero aparte del componente con una constante
+que se exporta y se llama desde el componente */
+
 export const ACTORS: Actors[] = [
     {
         id: 1,

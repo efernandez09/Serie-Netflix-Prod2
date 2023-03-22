@@ -14,10 +14,9 @@
             En este caso, como el campo "details" no esta asignado como un campo obligatorio, se puede dar
             el caso en el cual tengamos un registro de un actor que no tenga detalles, por lo que no tendria
             sentido mostrar este botón. -->
+
+        <!-- Se crea link a travé de router para acceder al componente detail con el id del actor seleccionado-->
         <p><a class="btn btn-secondary" *ngIf="actor.details" routerLink="/detail/{{actor.id}}" routerLinkActive="active-link" style="display: block; width: 130px; margin: auto; margin-bottom: 50px;">View details »</a></p>
         
     </div><!-- /.col-lg-4 -->
 </div>
-
-
-<!-- <app-detail [actors]="selectedActors"></app-detail> -->
