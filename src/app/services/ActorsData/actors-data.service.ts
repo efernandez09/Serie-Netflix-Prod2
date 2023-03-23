@@ -4,7 +4,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 
 
 
-import { Actors } from '../models/actors.inteface';
+import { Actors } from '../../models/actors.inteface';
 
 
 @Injectable({
