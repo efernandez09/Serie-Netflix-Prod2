@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Actors, ActorsDetails } from 'src/app/models/actors.inteface';
-import { ActorService } from 'src/app/components/actors/actor.service';
+import { ActorService } from 'src/app/services/ActorService/actor.service';
 
 @Component({
   selector: 'app-detail',

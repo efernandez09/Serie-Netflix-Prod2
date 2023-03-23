@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Actors } from '../models/actors.inteface';
+import { Actors } from 'src/app/models/actors.inteface';
 
 @Pipe({
   name: 'filterActorsByName'
