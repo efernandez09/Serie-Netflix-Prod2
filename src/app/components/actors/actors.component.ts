@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Actors } from 'src/app/models/actors.inteface';
 
 
 // Importamos los tipados que ya hemos creado previamente
@@ -29,9 +30,11 @@ import { FilterActorsByNamePipe } from '../../pipes/FilterActorsByName/filter-ac
  
 
 export class ActorsComponent implements OnInit{
+
   // Declaramos el array al cual le asignaremos el tipado que hemos creado en el modelo, y 
   // lo rellenaremos con la información del servicio que contiene los datos, en este caso solo necesitaremos 6.
-  //actorsArray: Actors[] = [];
+  // actorsArray: Actors[] = [];
+
   // Declaramos el elemnto en el cual se alamacenara el valor del input de búsqueda por autor.
   searchText: string = '';
   //Utilizamos el array con los datos que hemos importado
@@ -40,16 +43,21 @@ export class ActorsComponent implements OnInit{
   /*Definimos la propiedad para identificarla como la inyección del servicio */
   constructor(private actorService: ActorService, private router: Router, public actorsData: ActorsDataService ){}
 
-  /* Llamamos aquí al método getActors() para una mejor práctica */
-    // Añadimos que al inicializar el componente se suscriba al observable almacenado en
-  // el servicio de "ActorsDataService". y pase toda la información al arraylist que tenemos
-  // declarado en la parte superior de la clase.
+    /* Llamamos aquí al método getActors() para una mejor práctica */
+
   ngOnInit() {
     this.getActors();
-    
-    /* this.actorsData.getActors().subscribe(data => {
+  
+  // Método: Consumir datos de un servicio subscrito a los datos de un JSON.
+  // Añadimos que al inicializar el componente se suscriba al observable almacenado en
+  // el servicio de "ActorsDataService". y pase toda la información al arraylist que tenemos
+  // declarado en la parte superior de la clase.
+  /*
+     this.actorsData.getActors().subscribe(data => {
       this.actorsArray = data;
-      console.log(data))}*/
+      console.log(data))}
+  */
+
   }
 
   /* Creamos el método para recuperar los actores del servicio. Tenemos que usar la funcion subscribe 
