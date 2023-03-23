@@ -4,6 +4,7 @@ export interface Actors {
     name: string
     short_description: string
     image: string
+    video: string
     details?: ActorsDetails
   }
 
