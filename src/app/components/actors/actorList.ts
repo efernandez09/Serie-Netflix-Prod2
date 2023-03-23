@@ -10,6 +10,7 @@ export const ACTORS: Actors[] = [
         name: 'Ursula Corberó',
         short_description: 'Tokio es una de las miembros más importantes del grupo y es conocida por su habilidad con las armas y su valentía en situaciones peligrosas.',
         image: 'ursula-corbero.jpeg',
+        video: 'UrsulayMiguel.mp4',
         details: {
             bornDate: '11/08/1989',
             nationality: 'Española',
@@ -22,6 +23,7 @@ export const ACTORS: Actors[] = [
         name: 'Miguel Herrán',
         short_description: 'Río es uno de los miembros más jóvenes del grupo y es un experto en tecnología y electrónica. Es el encargado de comunicarse con la policía y de mantener la seguridad.',
         image: 'miguel-herran.jpg',
+        video: 'UrsulayMiguel.mp4',
         details: {
             bornDate: '25/04/1996',
             nationality: 'Español',
@@ -34,6 +36,7 @@ export const ACTORS: Actors[] = [
         name: 'Álvaro Morte',
         short_description: 'El Profesor es el cerebro detrás del robo a la Fábrica Nacional de Moneda y Timbre, y dirige a los demás miembros del equipo desde el exterior.',
         image: 'alvaro-morte.jpg',
+        video: 'Profesor.mp4',
         details: {
             bornDate: '23/02/1975',
             nationality: 'Español',
@@ -46,6 +49,7 @@ export const ACTORS: Actors[] = [
         name: 'Jaime Lorente',
         short_description: 'Denver es el hijo de Moscú y uno de los miembros del grupo de ladrones liderados por El Profesor. Denver es un personaje carismático y leal, aunque a veces impulsivo.',
         image: 'jaime-lorente.jpeg',
+        video: 'Jaime.mp4',
         details: {
             bornDate: '12/12/1991',
             nationality: 'Español',
@@ -58,6 +62,7 @@ export const ACTORS: Actors[] = [
         name: 'Itziar Ituño',
         short_description: 'Raquel es una inspectora de policía de gran inteligencia y tenacidad que es asignada para liderar la investigación del robo de la Fábrica Nacional de Moneda y Timbre.',
         image: 'itziar-ituno.jpeg',
+        video: 'Raquel.mp4',
         details: {
             bornDate: '18/06/1974',
             nationality: 'Española',
@@ -70,6 +75,7 @@ export const ACTORS: Actors[] = [
         name: 'Pedro Alonso',
         short_description: 'Berlín es uno de los miembros principales de la banda de ladrones, y es considerado el cerebro detrás del atraco a la Fábrica Nacional de Moneda y Timbre.',
         image: 'pedro-alonso.jpg',
+        video: 'Berlin.mp4',
         details: {
             bornDate: '21/06/1971',
             nationality: 'Español',
