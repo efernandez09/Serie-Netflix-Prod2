@@ -11,8 +11,9 @@ import { ACTORS } from './actorList';
 // Importamos los servicios
 import { ActorsDataService } from '../../services/ActorsData/actors-data.service'
 
-// Pipe
+// Pipes
 import { FilterActorsByNamePipe } from '../../pipes/FilterActorsByName/filter-actors-by-name.pipe'
+import { FilterActorsByDescriptionPipe } from '../../pipes/FilterActorsByDescription/filter-actors-by-description.pipe';
 
 
 @Component({

@@ -10,7 +10,7 @@ import { DetailComponent } from './detail/detail.component';
 // Pipes --> Importante declararlo tanto en el campo "Declarations" como en el "Exports", para que todos los componentes
 // Que incluyan este componente púedan utilizarlo y no cause errores.
 import { FilterActorsByNamePipe } from '../pipes/FilterActorsByName/filter-actors-by-name.pipe'
-
+import { FilterActorsByDescriptionPipe } from '../pipes/FilterActorsByDescription/filter-actors-by-description.pipe';
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -27,6 +27,7 @@ const routes: Routes = [
     ActorsComponent,
     PlayerComponent,
     FilterActorsByNamePipe,
+    FilterActorsByDescriptionPipe,
     DetailComponent
   ],
   imports: [
