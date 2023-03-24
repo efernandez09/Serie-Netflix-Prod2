@@ -36,7 +36,7 @@ export class ActorsComponent implements OnInit{
   // lo rellenaremos con la información del servicio que contiene los datos, en este caso solo necesitaremos 6.
   // actorsArray: Actors[] = [];
 
-  // Declaramos el elemnto en el cual se alamacenara el valor del input de búsqueda por autor.
+
   searchText: string = '';
   //Utilizamos el array con los datos que hemos importado
   actor = ACTORS;
@@ -61,6 +61,10 @@ export class ActorsComponent implements OnInit{
 
   }
 
+  onTextSearch(mensaje:string) {
+    this.searchText=mensaje;
+   }
+   
   /* Creamos el método para recuperar los actores del servicio. Tenemos que usar la funcion subscribe 
   porque hemos utilizado Observable<>*/
   getActors(): void {
