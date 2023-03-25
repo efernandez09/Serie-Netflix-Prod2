@@ -1,48 +1,40 @@
-<div class="input-group mb-3" style="width: 50%; margin: 0 auto; width: 300px;">
-        <span class="input-group-text" style="background-color: rgb(101, 101, 101); border: none;"  id="basic-addon1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-            </svg>
-        </span> 
-        <input type="text" [(ngModel)]="searchText" class="form-control" style="background-color: rgb(162, 160, 160); border: none; color: black;" aria-label="Username" aria-describedby="basic-addon1" placeholder="Busca aquí a tu actor favorito...">
-  </div>
-
-
+<app-finder (eventoBuscar)="onTextSearch($event)"></app-finder>
 <div class="row">
         <!-- Declaramos el método ngFor aquí para que itere cada actor utilizando todo el formato que conteiene este div. -->
-        <!--COMPROBAR 
-        
+        <!--COMPROBAR        
         
         -->
-    <!-- <div class="col-lg-4 mt-2" *ngFor="let actor of actorsArray | filterActorsByName: searchText"> -->
-    <div class="col-lg-4 mt-2" *ngFor="let actor of actor | filterActorsByName: searchText">
-        <svg class="bd-placeholder-img rounded-circle" style="display: block; margin: auto;" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>{{actor.name}}</title>
-            <rect width="100%" height="100%" fill="#777" ></rect>
-            <image [attr.xlink:href]="'../../../assets/actorsImages/' + actor.image" width="250px" x="-65"> </image>
-        </svg>
-        <h2 class="fw-normal mt-3 nameColor" style="text-align: center;">{{actor.name}}</h2>
-        <p class="pcolor" style="text-align: center;">{{actor.short_description}}</p>
-        <!-- Falta añadir vinculo con el componente de detalles filtrando por el id del actor -->
-        <!-- Además aquí añadimos una condicion, la cal en caso de que sea falsa es decir, que el actor NO
-            Contenga "details" no se muestre por pantalla el botón, que accede a los detalles del actor. 
-            En este caso, como el campo "details" no esta asignado como un campo obligatorio, se puede dar
-            el caso en el cual tengamos un registro de un actor que no tenga detalles, por lo que no tendria
-            sentido mostrar este botón. -->
+    <ng-container *ngIf="opcion==='nombre' || opcion===''">
+        <div class="col-lg-4 mt-2" *ngFor="let actor of actor | filterActorsByName: searchText">
+            <svg class="bd-placeholder-img rounded-circle" style="display: block; margin: auto;" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>{{actor.name}}</title>
+                <rect width="100%" height="100%" fill="#777" ></rect>
+                <image [attr.xlink:href]="'../../../assets/actorsImages/' + actor.image" width="250px" x="-65"> </image>
+            </svg>
+            <h2 class="fw-normal mt-3 nameColor" style="text-align: center;">{{actor.name}}</h2>
+            <p class="pcolor" style="text-align: center;">{{actor.short_description}}</p>
+            <!-- Falta añadir vinculo con el componente de detalles filtrando por el id del actor -->
+            <!-- Además aquí añadimos una condicion, la cal en caso de que sea falsa es decir, que el actor NO
+                Contenga "details" no se muestre por pantalla el botón, que accede a los detalles del actor. 
+                En este caso, como el campo "details" no esta asignado como un campo obligatorio, se puede dar
+                el caso en el cual tengamos un registro de un actor que no tenga detalles, por lo que no tendria
+                sentido mostrar este botón. -->
 
-        <!-- Se crea link a travé de router para acceder al componente detail con el id del actor seleccionado-->
-        <p><a class="btn btn-secondary" *ngIf="actor.details" routerLink="/detail/{{actor.id}}" routerLinkActive="active-link" style="display: block; width: 130px; margin: auto; margin-bottom: 50px;">View details »</a></p>
+            <!-- Se crea link a travé de router para acceder al componente detail con el id del actor seleccionado-->
+            <p><a class="btn btn-secondary" *ngIf="actor.details" routerLink="/detail/{{actor.id}}" routerLinkActive="active-link" style="display: block; width: 130px; margin: auto; margin-bottom: 50px;">View details »</a></p>
+        </div><!-- /.col-lg-4 -->
+    </ng-container>
+    <ng-container *ngIf="opcion==='descripcion'">
+        <div class="col-lg-4 mt-2" *ngFor="let actor of actor | filterActorsByDescription: searchText">
+            <svg class="bd-placeholder-img rounded-circle" style="display: block; margin: auto;" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+                <title>{{actor.name}}</title>
+                <rect width="100%" height="100%" fill="#777" ></rect>
+                <image [attr.xlink:href]="'../../../assets/actorsImages/' + actor.image" width="250px" x="-65"> </image>
+            </svg>
+            <h2 class="fw-normal mt-3 nameColor" style="text-align: center;">{{actor.name}}</h2>
+            <p class="pcolor" style="text-align: center;">{{actor.short_description}}</p>     
+            <p><a class="btn btn-secondary" *ngIf="actor.details" routerLink="/detail/{{actor.id}}" routerLinkActive="active-link" style="display: block; width: 130px; margin: auto; margin-bottom: 50px;">View details »</a></p>
         
-    </div><!-- /.col-lg-4 -->
-    <div class="col-lg-4 mt-2" *ngFor="let actor of actor | filterActorsByDescription: searchText">
-        <svg class="bd-placeholder-img rounded-circle" style="display: block; margin: auto;" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>{{actor.name}}</title>
-            <rect width="100%" height="100%" fill="#777" ></rect>
-            <image [attr.xlink:href]="'../../../assets/actorsImages/' + actor.image" width="250px" x="-65"> </image>
-        </svg>
-        <h2 class="fw-normal mt-3 nameColor" style="text-align: center;">{{actor.name}}</h2>
-        <p class="pcolor" style="text-align: center;">{{actor.short_description}}</p>     
-        <p><a class="btn btn-secondary" *ngIf="actor.details" routerLink="/detail/{{actor.id}}" routerLinkActive="active-link" style="display: block; width: 130px; margin: auto; margin-bottom: 50px;">View details »</a></p>
-     
-    </div><!-- /.col-lg-4 -->
+        </div><!-- /.col-lg-4 -->
+    </ng-container>
 </div>

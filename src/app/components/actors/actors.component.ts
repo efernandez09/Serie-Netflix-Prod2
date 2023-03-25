@@ -22,12 +22,6 @@ import { FilterActorsByDescriptionPipe } from '../../pipes/FilterActorsByDescrip
   styleUrls: ['./actors.component.css']
 })
 
-/*comprobar
-
-
-
-
-*/
  
 
 export class ActorsComponent implements OnInit{
@@ -36,8 +30,9 @@ export class ActorsComponent implements OnInit{
   // lo rellenaremos con la información del servicio que contiene los datos, en este caso solo necesitaremos 6.
   // actorsArray: Actors[] = [];
 
-  // Declaramos el elemnto en el cual se alamacenara el valor del input de búsqueda por autor.
+
   searchText: string = '';
+  opcion : string = '';
   //Utilizamos el array con los datos que hemos importado
   actor = ACTORS;
 
@@ -61,6 +56,12 @@ export class ActorsComponent implements OnInit{
 
   }
 
+  onTextSearch(mensaje:any) {
+    this.searchText=mensaje.searchText;
+    this.opcion = mensaje.option;
+  // alert("Buscando la colección..." + this.opcion + this.searchText);
+   }
+   
   /* Creamos el método para recuperar los actores del servicio. Tenemos que usar la funcion subscribe 
   porque hemos utilizado Observable<>*/
   getActors(): void {
