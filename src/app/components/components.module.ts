@@ -13,6 +13,7 @@ import { FilterActorsByNamePipe } from '../pipes/FilterActorsByName/filter-actor
 import { FilterActorsByDescriptionPipe } from '../pipes/FilterActorsByDescription/filter-actors-by-description.pipe';
 
 import { RouterModule, Routes } from '@angular/router';
+import { FinderComponent } from './finder/finder.component';
 
 /* Necesitamos importar RouterModule y Routes para poder utilizar el enrutamiento dentro del componente Actor */
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
     PlayerComponent,
     FilterActorsByNamePipe,
     FilterActorsByDescriptionPipe,
-    DetailComponent
+    DetailComponent,
+    FinderComponent
   ],
   imports: [
     CommonModule,
