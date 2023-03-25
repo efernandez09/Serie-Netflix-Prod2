@@ -22,12 +22,6 @@ import { FilterActorsByDescriptionPipe } from '../../pipes/FilterActorsByDescrip
   styleUrls: ['./actors.component.css']
 })
 
-/*comprobar
-
-
-
-
-*/
  
 
 export class ActorsComponent implements OnInit{
@@ -38,6 +32,7 @@ export class ActorsComponent implements OnInit{
 
 
   searchText: string = '';
+  opcion : string = '';
   //Utilizamos el array con los datos que hemos importado
   actor = ACTORS;
 
@@ -61,8 +56,10 @@ export class ActorsComponent implements OnInit{
 
   }
 
-  onTextSearch(mensaje:string) {
-    this.searchText=mensaje;
+  onTextSearch(mensaje:any) {
+    this.searchText=mensaje.searchText;
+    this.opcion = mensaje.option;
+  // alert("Buscando la colección..." + this.opcion + this.searchText);
    }
    
   /* Creamos el método para recuperar los actores del servicio. Tenemos que usar la funcion subscribe 
