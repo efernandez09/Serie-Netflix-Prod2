@@ -3,9 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // RoutingModule
 import { AppRoutingModule } from './app-routing.module';
+
+// Firebase Modules
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 /** 
  * Importamos los modulos de los componentes y de las páginas del sitio para poder
@@ -30,7 +36,10 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     AppRoutingModule,
     ComponentsModule,
     PagesModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]

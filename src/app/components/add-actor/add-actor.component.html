@@ -1,0 +1,65 @@
+    <button class='btn btn-primary'(click)="abrirModal()">Abrir modal</button>
+
+    <div class="modal fade" [class.show]="modalAbierto">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Mi modal</h5>
+            <button type="button" class="close" (click)="cerrarModal()">
+              <span>&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()"> 
+              
+                <div class="form-group">
+                  <label for="name">Nombre</label>
+                  <input type="text" class="form-control" formControlName="name" id="name">
+                </div>
+              
+                <div class="form-group">
+                  <label for="short-description">Descripción corta</label>
+                  <textarea class="form-control" formControlName="short_description" id="short-description"></textarea>
+                </div>
+              
+                <div class="form-group">
+                  <label for="image">Imagen</label>
+                  <input type="text" class="form-control" formControlName="image" id="image">
+                </div>
+              
+                <div class="form-group">
+                  <label for="video">Video</label>
+                  <input type="text" class="form-control" formControlName="video" id="video">
+                </div>
+              
+                <div formGroupName="details">
+                  <div class="form-group">
+                    <label for="born-date">Fecha de nacimiento</label>
+                    <input type="date" class="form-control" formControlName="bornDate" id="born-date">
+                  </div>
+              
+                  <div class="form-group">
+                    <label for="nationality">Nacionalidad</label>
+                    <input type="text" class="form-control" formControlName="nationality" id="nationality">
+                  </div>
+              
+                  <div class="form-group">
+                    <label for="long-description">Descripción larga</label>
+                    <textarea class="form-control" formControlName="long_description" id="long-description"></textarea>
+                  </div>
+              
+                  <div class="form-group">
+                    <label for="hobbies">Hobbies</label>
+                    <textarea class="form-control" formControlName="hobbies" id="hobbies"></textarea>
+                  </div>
+                </div>
+              
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              
+              </form>
+
+          </div>
+        </div>
+      </div>
+    </div>

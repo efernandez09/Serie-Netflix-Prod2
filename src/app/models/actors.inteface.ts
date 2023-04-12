@@ -1,6 +1,6 @@
 // Declaramos el tipado que tendrán todos los registros de los actores
 export interface Actors {
-    id: number
+    id?: number
     name: string
     short_description: string
     image: string
