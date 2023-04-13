@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { Actors, ActorsDetails } from 'src/app/models/actors.inteface';
+import { Actors } from 'src/app/models/actors.inteface';
 
 @Component({
   selector: 'app-detail',
