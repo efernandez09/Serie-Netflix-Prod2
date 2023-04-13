@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Actors } from 'src/app/models/actors.inteface';
 import { HandleActorsService } from 'src/app/services/handleActors/handle-actors.service';
-import { Firestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import * as firebase from 'firebase/app';
-import 'firebase/storage';
+import { Storage, ref, uploadBytes, listAll, getDownloadURL, } from '@angular/fire/storage';
+import { isNgTemplate } from '@angular/compiler';
+import { UrlTree } from '@angular/router';
+import { Firestore, collection, updateDoc, doc } from '@angular/fire/firestore';
 declare var $: any;
 
 @Component({
@@ -19,8 +18,9 @@ export class AddActorComponent implements OnInit {
   modalAbierto = false;
   random_id = Math.random();
   url : string;
+  idDoc : string = ''
 
-  constructor( private actorHandle: HandleActorsService, private storage: Firestore ) {}
+  constructor( private actorHandle: HandleActorsService, private storage: Storage, private firestore: Firestore ) {}
 
   ngOnInit(): void{
     
@@ -28,7 +28,7 @@ export class AddActorComponent implements OnInit {
       id: new FormControl(this.random_id),
       name: new FormControl(),
       short_description: new FormControl(),
-      image: new FormControl([]),
+      image: new FormControl(),
       video: new FormControl(),
       bornDate: new FormControl(),
       nationality: new FormControl(),
@@ -46,6 +46,29 @@ export class AddActorComponent implements OnInit {
   cerrarModal() {
     $('.modal').modal('hide');
   }
+
+  uploadImage($event: any){
+    const file = $event.target.files[0];
+    // console.log(file)
+    const imgRef = ref(this.storage, `images/${file.name}`);
+    uploadBytes(imgRef, file)
+      .then(res => console.log('La imagen se ha subido correctamente!' + res))
+      .catch((error) => console.log(error));
+  }
+
+  getImages() {
+    const imgRef = ref(this.storage, 'images');
+    listAll(imgRef)
+      .then(async res => {
+        console.log(res)
+          const url = await getDownloadURL(res.items[0]);
+          this.url = url;
+
+      })
+      .catch((error) => console.log(error));
+  }
+
+
 
   // subirImagen() {
   //   const archivo = this.formulario.controls['image'].value;
@@ -73,10 +96,14 @@ export class AddActorComponent implements OnInit {
   // }
 
   async onSubmit() {
-    
     const res = await this.actorHandle.addActor(this.formulario.value)
-    console.log(res)
-
+    .then(res => this.idDoc = res.path.split("/")[1])
+    .catch(err => console.log(err));
+    
+    const docRef = doc(this.firestore, `actor/${this.idDoc}`);
+    console.log(docRef);
+    updateDoc(docRef, {image: this.url})
+    // Te has quedado aquí.
   }
  
 }

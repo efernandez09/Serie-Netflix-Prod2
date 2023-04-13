@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Actors } from 'src/app/models/actors.inteface';
+import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+
 
 
 // Importamos los tipados que ya hemos creado previamente
@@ -30,11 +32,13 @@ export class ActorsComponent implements OnInit{
   searchText: string = '';
   opcion : string = '';
   
+  // Array donde se mostraran todas 
+  images: Array<string> = [];
   // Arrat donde se alamacenaran todos los actores que esten persistiendo en la base de datos.
   actor: Actors[];
 
   /*Definimos la propiedad para identificarla como la inyección del servicio */
-  constructor(private router: Router, private ActorsHandle: HandleActorsService){}
+  constructor(private router: Router, private ActorsHandle: HandleActorsService, private storage: Storage){}
 
     /* Llamamos aquí al método getActors() para una mejor práctica */
 
@@ -45,6 +49,9 @@ export class ActorsComponent implements OnInit{
         console.log(actors);
         this.actor = actors;
       })
+
+      this.getImages()
+
   }
 
   onTextSearch(mensaje:any) {
@@ -53,6 +60,20 @@ export class ActorsComponent implements OnInit{
   // alert("Buscando la colección..." + this.opcion + this.searchText);
    }
    
+   getImages() {
+    const imgRef = ref(this.storage, 'images');
+    listAll(imgRef)
+      .then(async res => {
+        console.log(res)
+        for (let item of res.items) { 
+          const url = await getDownloadURL(item);
+          this.images.push(url);
+        }
+      })
+      .catch((error) => console.log(error));
+  }
+
+
 
   // <-- Pablo --> 
   navegar() {

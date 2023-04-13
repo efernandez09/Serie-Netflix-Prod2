@@ -9,8 +9,8 @@ export interface Actors {
     id?: number
     name: string
     short_description: string
-    image: File
-    video: File
+    image: Array<string>
+    video: Array<string>
     bornDate: string
     nationality: string
     long_description: string
