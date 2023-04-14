@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HandleActorsService } from 'src/app/services/handleActors/handle-actors.service';
-import { Storage, ref, uploadBytes, listAll, getDownloadURL, } from '@angular/fire/storage';
-import { isNgTemplate } from '@angular/compiler';
-import { UrlTree } from '@angular/router';
+import { Storage, ref, uploadBytes, listAll, getDownloadURL, list } from '@angular/fire/storage';
 import { Firestore, collection, updateDoc, doc } from '@angular/fire/firestore';
+import { UrlTree } from '@angular/router';
 declare var $: any;
 
 @Component({
@@ -36,6 +35,8 @@ export class AddActorComponent implements OnInit {
       hobbies: new FormControl()
     })
 
+
+
   }
 
   abrirModal() {
@@ -56,14 +57,14 @@ export class AddActorComponent implements OnInit {
       .catch((error) => console.log(error));
   }
 
-  getImages() {
-    const imgRef = ref(this.storage, 'images');
-    listAll(imgRef)
-      .then(async res => {
-        console.log(res)
-          const url = await getDownloadURL(res.items[0]);
-          this.url = url;
 
+  // Te has quedado aqui!! Necesario provar.
+  getLastImage() {
+    const imgRef = ref(this.storage, 'images');
+      list(imgRef, {maxResults: 1}).then(async res => {
+        const latestImageRef = res.items[0];
+        const urlDownload = await getDownloadURL(latestImageRef);
+        this.url = urlDownload;
       })
       .catch((error) => console.log(error));
   }
@@ -95,15 +96,37 @@ export class AddActorComponent implements OnInit {
   //   hobbies: "viajar, leer y la música.",
   // }
 
-  async onSubmit() {
-    const res = await this.actorHandle.addActor(this.formulario.value)
-    .then(res => this.idDoc = res.path.split("/")[1])
-    .catch(err => console.log(err));
-    
-    const docRef = doc(this.firestore, `actor/${this.idDoc}`);
-    console.log(docRef);
-    updateDoc(docRef, {image: this.url})
-    // Te has quedado aquí.
-  }
- 
+
+
+    async updateImageUrl() {
+        
+      try {
+        const collectionRef = collection(this.firestore, 'actors');
+        const docRef = doc(collectionRef, this.idDoc)
+        console.log(this.url)
+        await updateDoc(docRef, {image: this.url})
+      } 
+      
+      catch (error) {
+        console.log(error)
+      }
+    }
+
+
+    async onSubmit() {
+      try {
+        const res = await this.actorHandle.addActor(this.formulario.value)
+        .then(res => this.idDoc = res.path.split("/")[1])
+        .catch(err => console.log(err));
+        this.updateImageUrl();
+      } 
+      
+      catch (error) {
+        console.log(error)
+      }
+    }
+  
+
+
+
 }
