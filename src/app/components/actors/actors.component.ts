@@ -5,7 +5,6 @@ import { Actors } from 'src/app/models/actors.inteface';
 import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
 
 
-
 // Importamos los tipados que ya hemos creado previamente
 // import { ActorService } from '../../services/ActorService/actor.service';
 // import { ACTORS } from './actorList';
@@ -73,6 +72,12 @@ export class ActorsComponent implements OnInit{
       .catch((error) => console.log(error));
   }
 
+  // Metodo para eliminar los actores
+  async onClickDelete(actor: Actors) {
+    const res = await this.ActorsHandle.deleteActor(actor)
+      .then (response => console.log('Se ha eliminado Correctamente'))
+      .catch(error => console.log('No se ha podido eliminar:' + error));
+  }
 
 
   // <-- Pablo --> 

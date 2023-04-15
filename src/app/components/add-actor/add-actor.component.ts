@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HandleActorsService } from 'src/app/services/handleActors/handle-actors.service';
-import { Storage, ref, uploadBytes, listAll, getDownloadURL, list } from '@angular/fire/storage';
+import { Storage, ref, uploadBytes, getDownloadURL, } from '@angular/fire/storage';
 import { Firestore, collection, updateDoc, doc } from '@angular/fire/firestore';
 import { UrlTree } from '@angular/router';
 declare var $: any;
@@ -16,8 +16,9 @@ export class AddActorComponent implements OnInit {
   formulario: FormGroup;
   modalAbierto = false;
   random_id = Math.random();
-  url : string;
-  idDoc : string = ''
+  imageName: string = '';
+  imageDownloadUrl: string = 'path';
+  idDoc : string = '';
 
   constructor( private actorHandle: HandleActorsService, private storage: Storage, private firestore: Firestore ) {}
 
@@ -35,8 +36,6 @@ export class AddActorComponent implements OnInit {
       hobbies: new FormControl()
     })
 
-
-
   }
 
   abrirModal() {
@@ -48,63 +47,45 @@ export class AddActorComponent implements OnInit {
     $('.modal').modal('hide');
   }
 
+  // Funcion dedicada al campo de subida de imagenes del formulario "Añadir nuevo actor".
   uploadImage($event: any){
+    // referenciamos la imagen mediante el evento que se pasa por parametros
     const file = $event.target.files[0];
-    // console.log(file)
+    // Referenciamos la imagen en el Storage de FireBase
     const imgRef = ref(this.storage, `images/${file.name}`);
+    // Asignamos el nombre de la imagen a una variable para posteriormente utilizarlo
+    // En otra funcion.
+    this.imageName = file.name;
+    // Subimos la imagen al Storage pasandole la referencia (Storage + Ruta)
+    // Y la imagen.
     uploadBytes(imgRef, file)
       .then(res => console.log('La imagen se ha subido correctamente!' + res))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log('No se ha podido subir la imagen:' + error));
   }
 
 
-  // Te has quedado aqui!! Necesario provar.
-  getLastImage() {
-    const imgRef = ref(this.storage, 'images');
-      list(imgRef, {maxResults: 1}).then(async res => {
-        const latestImageRef = res.items[0];
-        const urlDownload = await getDownloadURL(latestImageRef);
-        this.url = urlDownload;
-      })
-      .catch((error) => console.log(error));
+ // Funcion para conseguir la URL publica de la imagen en el Storage
+  async getActorImage() {
+    const imgRef = ref(this.storage, `images/${this.imageName}`);
+    try {
+      const imgDownURL = await getDownloadURL(imgRef);
+      this.imageDownloadUrl = imgDownURL;
+    } catch (error) {
+      console.log("Error al obtener la URL de descarga: ", error);
+    }
   }
 
-
-
-  // subirImagen() {
-  //   const archivo = this.formulario.controls['image'].value;
-  //   const ruta = `imagenes/${archivo.name}`;
-  //   const referencia = firebase.storage().ref(ruta);
-  //   referencia.put(archivo).then(() => {
-  //     referencia.getDownloadURL().then((url: any) => {
-  //       this.url = url;
-  //       this.firestore.collection('imagenes').add({ url: this.url });
-  //     });
-  //   });
-  // }
-
-  // Variable para ir añadiendo Actores manualmente (Cambiar el addActor(actores) del metodo onSubmit()).
-  // actores: Actors = {
-  //   id: 1,
-  //   name: "Ursula Corberó",
-  //   short_description: "Tokio es una de las miembros más importantes del grupo y es conocida por su habilidad con las armas y su valentía en situaciones peligrosas.",
-  //   image: "ursula-corbero.jpeg",
-  //   video: "UrsulayMiguel.mp4",
-  //   bornDate: "11/08/1989",
-  //   nationality: "Española",
-  //   long_description: "Úrsula Corberó es una actriz española nacida en Barcelona en 1989. Es conocida por su papel de Tokio en la exitosa serie de televisión española 'La Casa de Papel'. Corberó ha trabajado en cine y televisión desde que era joven y ha recibido varios premios por sus actuaciones, incluyendo el premio a Mejor Actriz en el Festival de Cine de Málaga. Además de su carrera actoral, Corberó ha trabajado como modelo y ha participado en campañas publicitarias para varias marcas de moda y belleza.",
-  //   hobbies: "viajar, leer y la música.",
-  // }
-
-
-
+    // Funcion dedicada a cambiar la URL erroanea, generada en el formulario
+    // Por la URL publica de la imagen.
     async updateImageUrl() {
         
       try {
         const collectionRef = collection(this.firestore, 'actors');
         const docRef = doc(collectionRef, this.idDoc)
-        console.log(this.url)
-        await updateDoc(docRef, {image: this.url})
+        await this.getActorImage();
+        await updateDoc(docRef, {image: this.imageDownloadUrl})
+          .then(res => console.log('imagen vinculada correctamente!'))
+          .catch(error => console.log('No se ha podido vincular por el siguiente error:' + error))
       } 
       
       catch (error) {
@@ -112,7 +93,7 @@ export class AddActorComponent implements OnInit {
       }
     }
 
-
+    // Funcion dedicada 
     async onSubmit() {
       try {
         const res = await this.actorHandle.addActor(this.formulario.value)
