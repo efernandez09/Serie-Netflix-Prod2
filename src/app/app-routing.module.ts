@@ -10,6 +10,7 @@ const routes: Routes = [
 {path: 'home', component: HomeComponent},
 {path: 'player', component: PlayerComponent},
 {path: 'detail/:id', component:DetailComponent},
+{path: 'edit-actor/:id', component: DetailComponent},
 {path: '**', pathMatch: 'full' ,redirectTo: 'home'}
 
 ];

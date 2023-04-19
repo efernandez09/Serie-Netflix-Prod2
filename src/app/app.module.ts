@@ -24,6 +24,7 @@ import { PagesModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     PagesModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())
