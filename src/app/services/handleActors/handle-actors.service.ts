@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 // Firestore 
-import { Firestore, collection, addDoc, collectionData, doc, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, docData } from '@angular/fire/firestore';
 import { Actors } from 'src/app/models/actors.inteface';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class HandleActorsService {
 
   constructor(private firestore: Firestore) { }
 
-  addActor(actor: Actors){
+ addActor(actor: Actors){
     // Referencia a la coleccion donde se almacenan los actores.
     const ActorRef = collection(this.firestore, 'actors');
     return addDoc(ActorRef, actor);
@@ -23,12 +23,16 @@ export class HandleActorsService {
     const ActorRef = collection(this.firestore, 'actors');
     return collectionData(ActorRef, {idField: 'id'}) as Observable<Actors[]>;
   }
-
+  
   deleteActor(actor: Actors) {
     const ActorDocRef = doc(this.firestore, `actors/${actor.id}`);
     return deleteDoc(ActorDocRef);
   }
 
-
+  //Método para obtener el actor con un id determinado
+  getOneActor(idActor: string | unknown){
+    const actorDocumentReference = doc(this.firestore, `actors/${idActor}`);
+    return docData(actorDocumentReference, { idField: 'id'}) as Observable<Actors>;
+  }
 
 }
