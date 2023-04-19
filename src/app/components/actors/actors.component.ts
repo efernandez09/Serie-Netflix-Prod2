@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { Actors } from 'src/app/models/actors.inteface';
-import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fire/storage';
+import { Storage, ref, listAll, getDownloadURL } from '@angular/fire/storage';
 
 
 // Importamos los tipados que ya hemos creado previamente
@@ -14,8 +13,6 @@ import { Storage, ref, uploadBytes, listAll, getDownloadURL } from '@angular/fir
 import { HandleActorsService } from 'src/app/services/handleActors/handle-actors.service';
 
 // Pipes
-import { FilterActorsByNamePipe } from '../../pipes/FilterActorsByName/filter-actors-by-name.pipe'
-import { FilterActorsByDescriptionPipe } from '../../pipes/FilterActorsByDescription/filter-actors-by-description.pipe';
 
 
 @Component({
@@ -35,7 +32,7 @@ export class ActorsComponent implements OnInit{
   images: Array<string> = [];
   // Arrat donde se alamacenaran todos los actores que esten persistiendo en la base de datos.
   actor: Actors[];
-
+  
   /*Definimos la propiedad para identificarla como la inyección del servicio */
   constructor(private router: Router, private ActorsHandle: HandleActorsService, private storage: Storage){}
 
@@ -78,7 +75,6 @@ export class ActorsComponent implements OnInit{
       .then (response => console.log('Se ha eliminado Correctamente'))
       .catch(error => console.log('No se ha podido eliminar:' + error));
   }
-
 
   // <-- Pablo --> 
   navegar() {
