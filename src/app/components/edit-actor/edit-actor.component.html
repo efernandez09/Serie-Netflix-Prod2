@@ -1,0 +1,84 @@
+<button class="btn btn-secondary" type="button" style="display: block; width: 80px; margin-left: 40px;"
+    (click)="abrirModal()">Edit
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil"
+        viewBox="0 0 16 16">
+        <path
+            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+    </svg>
+</button>
+<div class="modal fade" style="background-color: rgba(0, 0, 0, 0.818);" [class.show]="modalAbierto">
+    <div class="modal-dialog" >
+        <div class="modal-content" style="background-color: rgba(63, 63, 63, 0.925);">
+            <div class="modal-header" style="border: none;">
+                <h5 class="modal-title FormTextColor">Editar actor </h5>
+                <button type="button" class="close" (click)="cerrarModal()">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit(a)">
+
+                    <div class="form-group">
+                        <label for="name" class="FormTextColor" style="margin-top: 10px; margin-bottom: 5px;">Nombre</label>
+                        <input type="text" class="form-control" style="background-color: gray; border-color: gray;"
+                            formControlName="name" id="name" [(ngModel)]="a.name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="short-description" class="FormTextColor"
+                            style="margin-top: 10px; margin-bottom: 5px;">Descripción corta</label>
+                        <textarea class="form-control" style="background-color: gray; border-color: gray;"
+                            formControlName="short_description" id="short-description" [(ngModel)]="a.short_description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image" class="FormTextColor"
+                            style="margin-top: 10px; margin-bottom: 5px;">Imagen</label>
+                        <input type="file" style="background-color: gray; border-color: gray;"
+                            (change)="uploadImage($event)" class="form-control" formControlName="image" id="image" [(ngModel)]="a.image">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="video" class="FormTextColor"
+                            style="margin-top: 10px; margin-bottom: 5px;">Video</label>
+                        <input type="file" style="background-color: gray; border-color: gray;"
+                            (change)="uploadVideo($event)" class="form-control" formControlName="video" id="video" [(ngModel)]="a.video">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="born-date" class="FormTextColor" style="margin-top: 10px; margin-bottom: 5px;">Fecha
+                            de nacimiento</label>
+                        <input type="date" style="background-color: gray; border-color: gray;" class="form-control"
+                            formControlName="bornDate" id="born-date" [(ngModel)]="a.bornDate">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nationality" class="FormTextColor"
+                            style="margin-top: 10px; margin-bottom: 5px;">Nacionalidad</label>
+                        <input type="text" style="background-color: gray; border-color: gray;" class="form-control"
+                            formControlName="nationality" id="nationality"[(ngModel)]="a.nationality">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="long-description" class="FormTextColor"
+                            style="margin-top: 10px; margin-bottom: 5px;">Descripción larga</label>
+                        <textarea class="form-control" style="background-color: gray; border-color: gray;"
+                            formControlName="long_description" id="long-description" [(ngModel)]="a.long_description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hobbies" class="FormTextColor"
+                            style="margin-top: 10px; margin-bottom: 5px;">Hobbies</label>
+                        <textarea class="form-control" style="background-color: gray; border-color: gray;"
+                            formControlName="hobbies" id="hobbies" [(ngModel)]="a.hobbies"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary" style="margin-top: 15px;">Enviar</button>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
