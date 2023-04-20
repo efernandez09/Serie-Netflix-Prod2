@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
 
 // Importamos los componentes
 import { ActorsComponent } from './actors/actors.component';
 import { PlayerComponent } from './player/player.component';
 import { DetailComponent } from './detail/detail.component';
-import { AddActorComponent } from './add-actor/add-actor.component';
 
 // Pipes --> Importante declararlo tanto en el campo "Declarations" como en el "Exports", para que todos los componentes
 // Que incluyan este componente púedan utilizarlo y no cause errores.
@@ -16,7 +14,6 @@ import { FilterActorsByDescriptionPipe } from '../pipes/FilterActorsByDescriptio
 
 import { RouterModule, Routes } from '@angular/router';
 import { FinderComponent } from './finder/finder.component';
-import { EditActorComponent } from './edit-actor/edit-actor.component';
 
 /* Necesitamos importar RouterModule y Routes para poder utilizar el enrutamiento dentro del componente Actor */
 const routes: Routes = [
@@ -33,14 +30,11 @@ const routes: Routes = [
     FilterActorsByNamePipe,
     FilterActorsByDescriptionPipe,
     DetailComponent,
-    FinderComponent,
-    AddActorComponent,
-    EditActorComponent
+    FinderComponent
   ],
   imports: [
     CommonModule,
     FormsModule, 
-    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   exports: [

@@ -1,27 +1,34 @@
-/* Por motivos referentes a los "FormControls" hemos decidio excluir el tipo de dato "details"
- * Ya que no acepta tipos de datos personalizados, solo primarios. Y el hacer la conversion iba
- * ha ser demasiado código para una funcionalidad tan simple.
-*/
-
-
 // Declaramos el tipado que tendrán todos los registros de los actores
 export interface Actors {
-    id?: number
+    id: number
     name: string
     short_description: string
-    image: Array<string>
-    video: Array<string>
+    image: string
+    video: string
+    details?: ActorsDetails
+  }
+
+// A su vez también debemos declarar el tipado de los "ActorsDetails" ya que este registro contendrá otros registros.
+// Para que estos registros sean almacenados deberemos hacerlo en modo de obejto {} 
+/**
+Ejemplo:
+
+ * const actor: Actors = {
+  id: 1,
+  name: "Juan Pérez",
+  short_description: "Actor y cantante",
+  image: 'actor.jpg',
+  details: {
+    bornDate: "1990-01-01",
+    nationality: "Mexicana",
+    long_description: "Actor y cantante reconocido por su trabajo en...",
+    hobbies: "Leer, viajar y escuchar música"
+  }
+ */
+export interface ActorsDetails {
     bornDate: string
     nationality: string
     long_description: string
     hobbies: string
-    // details?: ActorsDetails
   }
-
-// export interface ActorsDetails {
-//     bornDate: string
-//     nationality: string
-//     long_description: string
-//     hobbies: string
-//   }
   
