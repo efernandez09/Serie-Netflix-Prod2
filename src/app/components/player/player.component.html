@@ -1,6 +1,16 @@
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+  
+	
+
 <div>
-	<video [src]="'./assets/actorsVideos/' + actor.video" style="margin-left: 450px;margin-top: 40px;" id="my_video_1" class="video-js vjs-default-skin" width="640px" height="350px" controls preload="auto"
-		
-		data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
-	</video>
+<video [src]="a.video" style="margin-left: 450px;margin-top: 40px;" id="my_video_1" width="640px" height="350px" controls preload="auto"
+    data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+
+</video>
+
+
+
 </div>
+<button id="restart-btn" type="button" onclick="document.querySelector('video').currentTime = 0;" style="border-radius: 5px; background-color:cornflowerblue;margin-left: 740px;"><i class="fas fa-redo-alt"></i></button>
