@@ -14,8 +14,6 @@ import { getStorage, getDownloadURL, listAll, ref } from 'firebase/storage';
   styleUrls: ['./detail.component.css']
 })
 export class DetailComponent implements OnInit{
-  //actor: Actors;
-  actor$: Observable<Actors>;
   actor: Actors[];
   a: Actors;
   images: Array<string> = [];
@@ -29,11 +27,10 @@ export class DetailComponent implements OnInit{
   
   ngOnInit(): void {
     //Recogemos id de la URl para acceder a ese actor en la base de datos
-    const idActor = this.route.snapshot.paramMap.get('id')
+    const idActor = this.route.snapshot.paramMap.get('id');
     
     //Llamamos al método del servicio que devuelve un actor
     this._actorService.getOneActor(idActor).subscribe(actors => { 
-      console.log("Este es mi : ", actors);
       this.a = actors});
   }
 
