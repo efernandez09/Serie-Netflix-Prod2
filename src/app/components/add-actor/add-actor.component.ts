@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HandleActorsService } from 'src/app/services/handleActors/handle-actors.service';
 import { Storage, ref, uploadBytes, getDownloadURL, } from '@angular/fire/storage';
 import { Firestore, collection, updateDoc, doc } from '@angular/fire/firestore';
-import { UrlTree } from '@angular/router';
+import Swal from 'sweetalert2';
 declare var $: any;
 
 @Component({
@@ -148,6 +148,30 @@ export class AddActorComponent implements OnInit {
     }
   }
 
+  // Mostrar mensaje conforme la creacion de el nuevo actor es correcta!
+  showCorrectToast() {
+    Swal.fire({
+      icon: 'success',
+      title: 'Nuevo actor creado con éxito!',
+      toast: true,
+      position: 'top',
+      showConfirmButton: false,
+      timer: 3000
+    });
+  }
+
+  // Mostrar mensaje conforme no se ha podido realizar la creacion del nuevo actor.
+  showErrorToast() {
+    Swal.fire({
+      icon: 'error',
+      title: 'No se ha podido crear el nuevo actor...',
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+  }
+
   // Funcion dedicada al envio de los datos introducidos en le formulario
   // al firestore.
   async onSubmit() {
@@ -157,10 +181,25 @@ export class AddActorComponent implements OnInit {
       .catch(err => console.log(err));
     this.updateImageUrl();
     this.updateVideoUrl();
+    this.showCorrectToast();
+    this.formulario = new FormGroup({
+      id: new FormControl(this.random_id),
+      name: new FormControl('', Validators.required),
+      short_description: new FormControl('',Validators.required),
+      image: new FormControl('',Validators.required),
+      video: new FormControl('',Validators.required),
+      bornDate: new FormControl('',Validators.required),
+      nationality: new FormControl('',Validators.required),
+      long_description: new FormControl('',Validators.required),
+      hobbies: new FormControl('',Validators.required)
+    });
+    this.cerrarModal();
+
     } 
     
     catch (error) {
       console.log(error)
+      this.showErrorToast();
     }
   }
   
