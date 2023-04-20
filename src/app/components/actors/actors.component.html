@@ -1,5 +1,3 @@
-<app-add-actor></app-add-actor>
-
 <app-finder (eventoBuscar)="onTextSearch($event)"></app-finder>
 <div class="row">
         <!-- Declaramos el método ngFor aquí para que itere cada actor utilizando todo el formato que conteiene este div. -->
@@ -11,7 +9,7 @@
             <svg class="bd-placeholder-img rounded-circle" style="display: block; margin: auto;" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <title>{{actor.name}}</title>
                 <rect width="100%" height="100%" fill="#777" ></rect>
-                <image [attr.xlink:href]="actor.image"  width="250px" x="-65"> </image>
+                <image [attr.xlink:href]="'../../../assets/actorsImages/' + actor.image" width="250px" x="-65"> </image>
             </svg>
             <h2 class="fw-normal mt-3 nameColor" style="text-align: center;">{{actor.name}}</h2>
             <p class="pcolor" style="text-align: center;">{{actor.short_description}}</p>
@@ -23,13 +21,7 @@
                 sentido mostrar este botón. -->
 
             <!-- Se crea link a travé de router para acceder al componente detail con el id del actor seleccionado-->
-            <div style="display: flex; justify-content: center; align-items: center; margin: auto; max-width: 200px; margin-bottom: 60px;">
-                <a class="btn btn-secondary" routerLink="/detail/{{actor.id}}" routerLinkActive="active-link" style="display: block; width: 130px;">View details »</a>
-                <button class="btn btn-danger" style="display: block; width: 40px; margin-left: 10px;" (click)="onClickDelete(actor)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-                  </svg></button>
-              </div>              
+            <p><a class="btn btn-secondary" *ngIf="actor.details" routerLink="/detail/{{actor.id}}" routerLinkActive="active-link" style="display: block; width: 130px; margin: auto; margin-bottom: 50px;">View details »</a></p>
         </div><!-- /.col-lg-4 -->
     </ng-container>
     <ng-container *ngIf="opcion==='descripcion'">
