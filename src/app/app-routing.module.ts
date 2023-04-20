@@ -6,11 +6,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { PlayerComponent } from './components/player/player.component';
 
+
 const routes: Routes = [
 {path: 'home', component: HomeComponent},
 {path: 'player', component: PlayerComponent},
 {path: 'detail/:id', component:DetailComponent},
-{path: 'edit-actor/:id', component: DetailComponent},
 {path: '**', pathMatch: 'full' ,redirectTo: 'home'}
 
 ];
