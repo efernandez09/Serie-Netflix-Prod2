@@ -17,7 +17,6 @@ import { Actors } from 'src/app/models/actors.inteface';
   styleUrls: ['./player.component.css']
 })
 export class PlayerComponent {
-//actor: Actors;
 actor$: Observable<Actors>;
 actor: Actors[];
 a: Actors;
@@ -75,5 +74,4 @@ goBack():void {
     let myVideo: any = document.getElementById("my_video_1");
     myVideo.currentTime = 0;
   }
-
 }
