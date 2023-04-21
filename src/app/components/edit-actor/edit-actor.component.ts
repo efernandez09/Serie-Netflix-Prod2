@@ -75,7 +75,7 @@ export class EditActorComponent implements OnInit{
       .catch((error) => console.log('No se ha podido subir la imagen:' + error));
   }
 
-  // Funcion dedicada al campo de subida de videos del formulario "Añadir nuevo actor".
+  // Funcion dedicada al campo de subida de videos del formulario "Editar actor".
   uploadVideo($event: any){
     // referenciamos la imagen mediante el evento que se pasa por parametros
     const file = $event.target.files[0];
