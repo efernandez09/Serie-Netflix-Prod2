@@ -10,6 +10,7 @@ import { getStorage, getDownloadURL, listAll, ref } from 'firebase/storage';
 
 
 import { Actors } from 'src/app/models/actors.inteface';
+import { ActorService } from 'src/app/services/ActorService/actor.service';
 
 @Component({
   selector: 'app-player',
@@ -73,5 +74,21 @@ goBack():void {
   restart() {
     let myVideo: any = document.getElementById("my_video_1");
     myVideo.currentTime = 0;
+  }
+
+  constructor(
+    private route: ActivatedRoute, //Para extraer el id de la ruta que ha creado el componente
+    private actorService: ActorService, //Para mostrar el actor
+    private location: Location //Servicio para interactuar con el navegador y volver hacia a atrás
+  ){}
+
+  ngOnInit(): void {
+    this.getActor();
+  }
+
+  /*Método para obtener el id del actor y acceder a su detalle*/
+  getActor(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.actorService.getActor(+id!).subscribe(Actors => this.actor = Actors);
   }
 }
