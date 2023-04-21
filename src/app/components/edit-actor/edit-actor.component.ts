@@ -60,7 +60,7 @@ export class EditActorComponent implements OnInit{
     $('.modal').modal('hide');
   }
 
-  // Funcion dedicada al campo de subida de imagenes del formulario "Editar actor".
+  // Funcion dedicada al campo de subida de imagenes del formulario "Editar actor"
   uploadImage($event: any){
     // referenciamos la imagen mediante el evento que se pasa por parametros
     const file = $event.target.files[0];
@@ -75,7 +75,7 @@ export class EditActorComponent implements OnInit{
       .catch((error) => console.log('No se ha podido subir la imagen:' + error));
   }
 
-  // Funcion dedicada al campo de subida de videos del formulario "Editar actor".
+  // Funcion dedicada al campo de subida de videos del formulario "Editar actor"
   uploadVideo($event: any){
     // referenciamos la imagen mediante el evento que se pasa por parametros
     const file = $event.target.files[0];
