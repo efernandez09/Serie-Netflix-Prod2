@@ -1,5 +1,12 @@
 <!-- Añadimos la barra de navegación superior-->
 <app-top-bar></app-top-bar>
+<div *ngIf="message;">
+    <h1>{{ message.notification.title }}</h1>
+    <h2>{{ message.notification.body }}</h2>
+  </div>
+  <div *ngIf="!message;">
+    No Message Arrived
+</div>
 <!-- Declaramos únicamente en el componente principal el "Router" el cual esta configurado
 para que siempre muestre de forma predeterminada el componente "home" (a menos que se indique lo contrario en la URL) -->
 <router-outlet></router-outlet>
