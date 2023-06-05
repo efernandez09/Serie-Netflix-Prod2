@@ -8,6 +8,6 @@ export const environment = {
     apiKey: 'AIzaSyCo9Flk_rWy686Dpmj0BUqpWRxt4ILsDK0',
     authDomain: 'prod2-serienetflix.firebaseapp.com',
     messagingSenderId: '8734869459',
-    vapidKey: 'BLmioMLpOhr4XJmYPo3MwEx3c1tpvOh4cj0BO1hGMFGnUsK4wwvJiKWTHmWwx733u_TW6-9q_KKuci7RBUqeM_I'
+    measurementId: 'G-5VH83X9KJ3',
   }
 }

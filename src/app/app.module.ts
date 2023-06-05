@@ -16,7 +16,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 /** 
  * Importamos los modulos de los componentes y de las páginas del sitio para poder
  * utilizarlos en el componente principal. (Los añadimos en la sección de "imports" en el NgModule)
- */ 
+*/ 
 
 // Componentes
 import { ComponentsModule } from './components/components.module';
@@ -25,6 +25,11 @@ import { AppComponent } from './app.component';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { ToastrModule } from 'ngx-toastr';
+
+// Firebase Push notifications
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
+import { PushNotificationService } from './services/push-notification.service';
 
 
 @NgModule({
@@ -40,12 +45,14 @@ import { ToastrModule } from 'ngx-toastr';
     PagesModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireMessagingModule, 
     ToastrModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
-    provideStorage(() => getStorage())
+    provideStorage(() => getStorage()),
+    provideMessaging(() => getMessaging()),
   ],
-  providers: [],
+  providers: [PushNotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

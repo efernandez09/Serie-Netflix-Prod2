@@ -1,5 +1,5 @@
-importScripts('https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/9.22.1/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/9.5/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/9.5/firebase-messaging-compat.js');
 
 firebase.initializeApp({
     projectId: 'prod2-serienetflix',
@@ -12,3 +12,11 @@ firebase.initializeApp({
    });
    
 const messaging = firebase.messaging();
+
+console.log(messaging)
+
+messaging.onMessage((payload) => {
+    console.log('Message received. ', payload);
+    // ...
+});
+
